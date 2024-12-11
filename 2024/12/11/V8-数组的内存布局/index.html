@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/12/11/v8 exploit level3/"/>
+    <link rel="canonical" href="http://example.com/2024/12/11/v8-数组的内存布局/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,14 +23,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="V8 Exploit Level3">
-<meta property="og:url" content="http://example.com/2024/12/11/V8%20Exploit%20Level3/index.html">
+<meta property="og:title" content="V8 数组的内存布局">
+<meta property="og:url" content="http://example.com/2024/12/11/V8-%E6%95%B0%E7%BB%84%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2024-12-11T05:54:03.000Z">
-<meta property="article:modified_time" content="2024-12-11T08:09:55.110Z">
+<meta property="article:published_time" content="2024-12-11T11:28:50.000Z">
+<meta property="article:modified_time" content="2024-12-11T11:31:45.888Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -45,7 +45,7 @@
     
     <title>
         
-            V8 Exploit Level3 | Theme Redefine
+            V8 数组的内存布局 | Theme Redefine
         
     </title>
 
@@ -211,7 +211,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -234,7 +234,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">V8 Exploit Level3</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">V8 数组的内存布局</h1>
 			</div>
 			
 		</div>
@@ -255,15 +255,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-12-11 13:54:03</span>
-        <span class="mobile">2024-12-11 13:54:03</span>
+        <span class="desktop">2024-12-11 19:28:50</span>
+        <span class="mobile">2024-12-11 19:28:50</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-12-11 16:09:55</span>
-            <span class="mobile">2024-12-11 16:09:55</span>
+            <span class="desktop">2024-12-11 19:31:45</span>
+            <span class="mobile">2024-12-11 19:31:45</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -290,20 +290,11 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h1 id="V8-Exploit-Level3"><a href="#V8-Exploit-Level3" class="headerlink" title="V8 Exploit Level3"></a>V8 Exploit Level3</h1><h2 id="level3："><a href="#level3：" class="headerlink" title="level3："></a>level3：</h2><h3 id="一-分析patch文件"><a href="#一-分析patch文件" class="headerlink" title="一.分析patch文件"></a>一.分析patch文件</h3><p>给出addressof原语和fakeobj原语<br>addressof原语(给定一个对象，可以返回该对象所在的内存地址)<br>fakeobj原语(给出一个地址，返回一个以该地址为首地址形式的对象)</p>
-<h3 id="二-利用思路"><a href="#二-利用思路" class="headerlink" title="二.利用思路"></a>二.利用思路</h3><p>根据addressof原语和fakeobj原语通过伪造对象的方式构造任意地址读写原语，进而通过level 2中的方法实现任意代码执行。</p>
-<h3 id="三-exp"><a href="#三-exp" class="headerlink" title="三.exp"></a>三.exp</h3><p>核心代码如下图所示(通过伪造对象的方式构造任意地址读写原语)</p>
-<img lazyload src="/images/loading.svg" data-src="/2024/12/11/V8%20Exploit%20Level3/1.png" class title="This is an 1.png">
-
-<p>首先构造一个浮点型数组var arr&#x3D; [c2f(0x001cb8a5, 0x00000725), c2f(0x00000725, 0x00008000)];<br>由于v8的数据结构具有特定的存储方式，详见<a class="link" target="_blank" rel="noopener" href="https://v8.dev/blog/fast-properties">v8数据结构<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>接着通过addressof原语得到arr的首地址，接着通过var fakearr&#x3D;GetFakeObject(arr_addr+0x54)伪造一个对象对象的首地址为arr_addr+0x54(利用Heap Fengshui,通过level2中的调试方式，将fakearr的首地址置为arr[0]的首地址处，如下图所示)</p>
-<img lazyload src="/images/loading.svg" data-src="/2024/12/11/V8%20Exploit%20Level3/2.png" class title="This is an 2.png">
-<p>注：此处fakearr的map值是0x001cb8a5，该为能够正确被编译器识别的map值，所以在填入arr[0]时应当提前创建一个数组对象，将它的map值取出，再填入arr[0]处,即可成功伪造一个对象fakearr。</p>
-<h5 id="任意地址读写原语构造"><a href="#任意地址读写原语构造" class="headerlink" title="任意地址读写原语构造"></a>任意地址读写原语构造</h5><p>此时将arr[1]处的低32位改为cage_addr(目标地址)-0x8,则再访问fakearr[0]即为访问fakearr的element域所指位置+0x8的位置，因此<br>访问fakearr[0]即为读出目标地址的内容。因此实现了任意地址读原语的构造<br>同理，将value写入fakearr[0]即可实现任意地址写原语。</p>
-<p>有了任意地址读写原语以及addressof原语，即可用level2中的方法实现任意代码执行。</p>
-<img lazyload src="/images/loading.svg" data-src="/2024/12/11/V8%20Exploit%20Level3/3.png" class title="This is an 3.png">
+			<h1 id="浮点型数组"><a href="#浮点型数组" class="headerlink" title="浮点型数组"></a>浮点型数组</h1><img lazyload src="/images/loading.svg" data-src="/2024/12/11/V8-%E6%95%B0%E7%BB%84%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/image-1.png" class title="This is an 1.png">
 
 
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>level3中利用了addressof原语和fakeobj原语利用伪造对象的方式构造出了任意地址读写原语，进而利用level2中的方式，完成了任意代码执行，核心是利用addressof和fakeobj原语构造任意地址读写原语的过程，如果有问题欢迎多多交流。</p>
+<h1 id="对象型数组"><a href="#对象型数组" class="headerlink" title="对象型数组"></a>对象型数组</h1><img lazyload src="/images/loading.svg" data-src="/2024/12/11/V8-%E6%95%B0%E7%BB%84%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/image-2.png" class title="This is an 2.png">
+
 
 		</div>
 
@@ -311,18 +302,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> V8 Exploit Level3</li>
+        <li><strong>Title:</strong> V8 数组的内存布局</li>
         <li><strong>Author:</strong> The Redefine Team</li>
         <li><strong>Created at
-                :</strong> 2024-12-11 13:54:03</li>
+                :</strong> 2024-12-11 19:28:50</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-12-11 16:09:55
+                    :</strong> 2024-12-11 19:31:45
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2024/12/11/V8 Exploit Level3/
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/12/11/V8-数组的内存布局/
         </li>
         <li>
             <strong>
@@ -347,23 +338,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2024/12/11/V8-Exploit-Level4/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">V8 Exploit Level4</span>
-						<span class="post-nav-item">Prev posts</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2024/12/10/V8-Exploit-Level2/">
+				<a class="next" rel="next" href="/2024/12/11/V8-Exploit-Level5/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">V8 Exploit Level2</span>
+						<span class="post-nav-title-item">V8 Exploit Level5</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -427,8 +406,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">V8 Exploit Level3</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#V8-Exploit-Level3"><span class="nav-text">V8 Exploit Level3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#level3%EF%BC%9A"><span class="nav-text">level3：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E5%88%86%E6%9E%90patch%E6%96%87%E4%BB%B6"><span class="nav-text">一.分析patch文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E5%88%A9%E7%94%A8%E6%80%9D%E8%B7%AF"><span class="nav-text">二.利用思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-exp"><span class="nav-text">三.exp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-text">结语</span></a></li></ol></li></ol>
+		<div class="page-title">V8 数组的内存布局</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B%E6%95%B0%E7%BB%84"><span class="nav-text">浮点型数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%9E%8B%E6%95%B0%E7%BB%84"><span class="nav-text">对象型数组</span></a></li></ol>
 
 	</div>
 </div>
@@ -455,7 +434,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        4 posts in total
+                        6 posts in total
                     </span>
                     
                 </p>
