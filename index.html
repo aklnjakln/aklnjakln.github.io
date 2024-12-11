@@ -266,7 +266,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -293,7 +293,7 @@
                 <div class="author flex flex-col justify-center my-2.5 mx-0">
     <div class="name">The Redefine Team</div>
     
-        <div class="label">Lv1</div>
+        <div class="label">Lv2</div>
     
 </div>
                 <div class="statistics flex justify-around my-2.5">
@@ -306,7 +306,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -321,6 +321,172 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/12/11/V8-Exploit-Level9/">
+                            V8-Exploit-Level9
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            V8 Exploit Level9level9：一.分析patch文件给出V8 sandbox memory corruption API(包含Addressof原语，沙箱内部的任意地址读写原语)
+二.利用思路主要是借鉴这个方法,由于本题中的沙箱是升级后的沙箱，RWX段的指针无法修改，因此不能用之前的修改指向RWX段指针的方式来实现任意代码执行，因此需要用劫持控制流的方式来让pc指向shel...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Dec 11 2024 23:14:21 GMT+0800">
+                
+                    2024-12-11
+                
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2024/12/11/V8-Exploit-Level9/">Read more<span class="seo-reader-text">V8-Exploit-Level9</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/12/11/V8-Exploit-Level8/">
+                            V8-Exploit-Level8
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            V8 Exploit Level8level8：一.分析patch文件更改边界检查消除条件
+二.利用思路patch文件中删除了边界检查消除相关节点并将消除条件index_type.Max()&lt;length_type.Min()改为index_type.Min()&lt;length_type.Min(),可借助此漏洞通过构造对象，并且index的范围使其满足边界检查消除条件，进而通过数...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Dec 11 2024 21:35:34 GMT+0800">
+                
+                    2024-12-11
+                
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2024/12/11/V8-Exploit-Level8/">Read more<span class="seo-reader-text">V8-Exploit-Level8</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/12/11/V8-Exploit-Level7/">
+                            V8-Exploit-Level7
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            V8 Exploit Level7level7：一.分析patch文件删除deoptimize操作
+二.利用思路patch文件中删除了deoptimize相关操作，导致TurBoFan生成的JIT代码中，在检测到一个object的map不同时，不会进行deoptimize操作。可通过修改对象类型进而在通过利用类型混淆构造addressof和fakeobj原语进而到达任意代码执行。
+三.exp...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Dec 11 2024 20:46:18 GMT+0800">
+                
+                    2024-12-11
+                
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2024/12/11/V8-Exploit-Level7/">Read more<span class="seo-reader-text">V8-Exploit-Level7</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/12/11/V8-Exploit-Level6/">
+                            V8-Exploit-Level6
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            V8 Exploit Level6level6：一.分析patch文件给出一个Array.functionMap函数
+二.利用思路根据Array.functionMap函数构造addressof原语和fakeobj原语，进而利用level 3中的利用思路实现任意代码执行。
+三.exp核心代码如下图所示(根据Array.functionMap函数构造addressof原语和fakeobj原语)...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Dec 11 2024 20:16:42 GMT+0800">
+                
+                    2024-12-11
+                
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2024/12/11/V8-Exploit-Level6/">Read more<span class="seo-reader-text">V8-Exploit-Level6</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -609,7 +775,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        6 posts in total
+                        10 posts in total
                     </span>
                     
                 </p>
