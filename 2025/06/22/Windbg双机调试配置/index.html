@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="zhaojunqi">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/06/22/windbg双机调试配置/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windbg双机调试配置">
+<meta property="og:url" content="http://example.com/2025/06/22/Windbg%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-06-22T08:58:39.000Z">
+<meta property="article:modified_time" content="2025-06-22T09:14:29.799Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Windows内核漏洞调试学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/bbb.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/bbb.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/bbb.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Windbg双机调试配置 | zhaojunqi&#39;s blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Welcome to zhaojunqi's blog","subtitle":{"text":["谢谢你,一路陪我到这里"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":100,"backing_delay":1500,"loop":false,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/bbb.jpg" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                zhaojunqi&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Windbg双机调试配置</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/bbb.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">zhaojunqi</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-06-22 16:58:39</span>
+        <span class="mobile">2025-06-22 16:58:39</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-06-22 17:14:29</span>
+            <span class="mobile">2025-06-22 17:14:29</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Windows%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E%E8%B0%83%E8%AF%95%E5%AD%A6%E4%B9%A0/">Windows内核漏洞调试学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>前言：从这篇文章开始我们将进入windows内核的利用教程，目的是和JS引擎中的漏洞配合起来，组成一条利用链，内核的漏洞可以做到一个提升用户权限的效果，以达到更大程度的利用效果。</p>
+<h1 id="Windbg调试配置"><a href="#Windbg调试配置" class="headerlink" title="Windbg调试配置"></a>Windbg调试配置</h1><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><p>目标机(debuggee machine)： Hype-V中的虚拟机　</p>
+<p>主机(debugger machine):   Windbg所在机器</p>
+<p>由于本次教程涉及到windows7和windows10，所以这两个版本的操作系统在虚拟机中都需要配置</p>
+<h1 id="Windows11双机网络调试："><a href="#Windows11双机网络调试：" class="headerlink" title="Windows11双机网络调试："></a>Windows11双机网络调试：</h1><h2 id="本人踩坑："><a href="#本人踩坑：" class="headerlink" title="本人踩坑："></a>本人踩坑：</h2><p>手动通过bcdedit配置一堆，添加启动项，然后配置dbgsettings，开启debug选项，配置网卡，等等，最终没成功</p>
+<h2 id="最终解决："><a href="#最终解决：" class="headerlink" title="最终解决："></a>最终解决：</h2><p>根据官方教程<a class="link" target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/setting-up-a-network-debugging-connection-automatically%EF%BC%88%E5%B0%86%E4%B8%BB%E6%9C%BA%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%8B%B7%E5%88%B0%E5%AE%BF%E4%B8%BB%E6%9C%BA%E4%B8%8A%E6%97%B6%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%B8%BB%E6%9C%BA%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E7%9B%AE%E6%A0%87%E6%9C%BA%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E6%88%96%E8%80%85%E9%80%9A%E8%BF%87%E7%9B%AE%E6%A0%87%E6%9C%BA%E7%9A%84%E5%A2%9E%E5%BC%BA%E4%BC%9A%E8%AF%9D%E5%8A%9F%E8%83%BD%EF%BC%88%E6%88%91%E6%B2%A1%E6%88%90%E5%8A%9F%EF%BC%89%EF%BC%89">https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/setting-up-a-network-debugging-connection-automatically（将主机中的文件拷到宿主机上时可以使用主机通过远程桌面连接目标机的方式，或者通过目标机的增强会话功能（我没成功））<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>利用kenet.exe自动完成配置相应的hostip和port（此处hostip为debugger的ip，port为debugger中监听的端口号），并在windbg中设置后打开windbg.exe，接着重启一下目标机，在Hype-V管理器-&gt;虚拟网络适配器管理中添加一个外部网络适配器，计为kd，将网络适配器的NET模式改为Kd模式，即可进行调试</p>
+<p>目标机中上不了网的问题：在Hype-V管理器中为目标机添加网络适配器，并配置静态ip，即可s</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh interface ip set address &quot;以太网 N&quot; static [IP地址] [子网掩码] [网关]</span><br></pre></td></tr></table></figure></div>
+
+<p>目的：将名为“以太网 N”的网卡配置为静态ip</p>
+<p>再配置dns：</p>
+<p>netsh interface ip set dns “以太网 N” static 8.8.8.8</p>
+<h1 id="windows7串口调试："><a href="#windows7串口调试：" class="headerlink" title="windows7串口调试："></a>windows7串口调试：</h1><p>非常简单，就只用运行命令</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\system32&gt;bcdedit /copy &#123;current&#125; /d &quot;Kernel Debugging On&quot;</span><br><span class="line">The entry was successfully copied to &#123;3709675a-4632-11ee-b00a-b3e46a698b2a&#125;.</span><br><span class="line"></span><br><span class="line">C:\Windows\system32&gt;bcdedit /debug &#123;3709675a-4632-11ee-b00a-b3e46a698b2a&#125; on</span><br><span class="line">The operation completed successfully.</span><br></pre></td></tr></table></figure></div>
+
+<p>再在虚拟机管理器上hype-V或VM Ware 上对应的com上添加为命名管道，并且起一个名字，再在windbg上通过com连接，填入对应的名字就行。</p>
+<h2 id="windows7配网："><a href="#windows7配网：" class="headerlink" title="windows7配网："></a>windows7配网：</h2><p>配置windows 7的网络时，首先需要在hype-V中给该虚拟机添加一个虚拟网络适配器，并选上NAT模式，（因为在宿主机上打印ipconfig，发现192.168.137.1对应的是Ethernet（NAT）所以我猜是要改成NAT），然后在目标机上对应的网卡配置静态ip和dns即可</p>
+<h2 id="Windows7配置HEVD，OSRLoader，ghidra"><a href="#Windows7配置HEVD，OSRLoader，ghidra" class="headerlink" title="Windows7配置HEVD，OSRLoader，ghidra"></a>Windows7配置HEVD，OSRLoader，ghidra</h2><p>直接在GitHub上下载.zip即可，然后解压下来后就会有HEVD.sys文件，再安装osrloader，并加载这个sys文件即可</p>
+<p>然后在主机上的windbg中加载符号，并验证HEVD符号是否成功加载即可（这里注意路径问题，还需要把整个文件copy到主机对应的路径中）</p>
+<p>.sympath SRV<em>C:\Symbols</em><a class="link" target="_blank" rel="noopener" href="https://msdl.microsoft.com/download/symbols;C:/projects/hevd/build/driver/vulnerable/x64">https://msdl.microsoft.com/download/symbols;C:\projects\hevd\build\driver\vulnerable\x64<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>对于ghidra：下载后需要配置java，再打开.bat文件，即可，再新建项目，加载HEVD.sys即可</p>
+<h2 id="在windbg中加载HEVD-pdb符号："><a href="#在windbg中加载HEVD-pdb符号：" class="headerlink" title="在windbg中加载HEVD.pdb符号："></a>在windbg中加载HEVD.pdb符号：</h2><p>1.首先lm m H*检查模块信息中是否输出HEVD服务</p>
+<p>2.设置路径：</p>
+<p>设置微软服务器符号：.sympath SRV<em>C:\symbols</em><a class="link" target="_blank" rel="noopener" href="https://msdl.microsoft.com/download/symbols">https://msdl.microsoft.com/download/symbols<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>添加额外的路径：.sympath+ C:\projects\hevd\build\driver\vulnerable\x86</p>
+<p>3.加载符号：!sym noisy 启动调试日志   .reload &#x2F;f HEVD.sys 加载符号</p>
+<p>a4.验证符号：<code>x HEVD!*</code>  </p>
+<p><strong>注：</strong>在调试过程过遇到偏移量不对的问题，例如dt _EPROCESS 0x86980d40指令有可能默认选定的符号信息是基于ntdll（ntdll!前缀,用户态dll，适用于windows10&#x2F;11所以应该将该指令改为dt nt! _EPROCESS 0x86980d40（nt!前缀，内核结构体，适用于本系统windows）</p>
+<h2 id="Windbg常用调试命令："><a href="#Windbg常用调试命令：" class="headerlink" title="Windbg常用调试命令："></a>Windbg常用调试命令：</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">功能</th>
+<th align="left">典型应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>k L5</code></td>
+<td align="left">显示调用栈（限制帧数）</td>
+<td align="left">快速查看崩溃上下文</td>
+</tr>
+<tr>
+<td align="left"><code>u</code></td>
+<td align="left">反汇编代码</td>
+<td align="left">分析崩溃点的汇编指令</td>
+</tr>
+<tr>
+<td align="left"><code>bu</code></td>
+<td align="left">设置延迟绑定断点</td>
+<td align="left">在符号未加载时预先设置断点</td>
+</tr>
+<tr>
+<td align="left"><code>bl</code></td>
+<td align="left">列出所有断点</td>
+<td align="left">检查断点状态或删除无效断点</td>
+</tr>
+<tr>
+<td align="left">r</td>
+<td align="left">查看当前寄存器的值</td>
+<td align="left">查看当前寄存器的值</td>
+</tr>
+<tr>
+<td align="left">.frame 0n0</td>
+<td align="left">切换到调用栈的第 0 帧（即当前执行的函数帧）</td>
+<td align="left">在分析崩溃或断点触发时，定位到最相关的栈帧</td>
+</tr>
+<tr>
+<td align="left">dv &#x2F;t &#x2F;v</td>
+<td align="left">显示当前栈帧中的局部变量（<strong>d</strong>isplay <strong>v</strong>ariables），并附加类型和地址信息</td>
+<td align="left">&#x2F;t 附加类型信息 &#x2F;v 附加地址信息</td>
+</tr>
+<tr>
+<td align="left">locals</td>
+<td align="left">显示局部变量（需符号）</td>
+<td align="left">调试函数内部逻辑</td>
+</tr>
+<tr>
+<td align="left">dd rsp L1</td>
+<td align="left">查看栈顶的4字节值</td>
+<td align="left">分析栈操作或返回地址</td>
+</tr>
+<tr>
+<td align="left">dS</td>
+<td align="left">显示ANSI字符串</td>
+<td align="left">查看字符串参数或缓冲区</td>
+</tr>
+<tr>
+<td align="left"><code>!thread</code></td>
+<td align="left">显示当前线程的详细信息，包括线程对象地址、所属进程、TEB（线程环境块）、栈信息等</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>dd fs:[0x124]</code> L1</td>
+<td align="left"><code>dd</code>：以 DWORD 格式显示内存。 <code>fs:[0x124]</code>：从 FS 段寄存器偏移 <code>0x124</code> 处读取内存（x86 内核模式下指向 <code>_KTHREAD</code>）。 <code>L1</code>：仅显示 1 个 DWORD（4 字节）。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>dg @fs</code></td>
+<td align="left">显示 FS 段寄存器的段描述符信息（基址、长度、权限等）。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">dt_KPCR</td>
+<td align="left">dt（即display type）显示 <code>_KPCR</code>（处理器控制区）的结构定义，包括字段偏移和类型。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">dt _KTHREAD     0x867095b0</td>
+<td align="left">显示指定地址（<code>0x867095b0</code>）的 <code>_KTHREAD</code> 结构内容。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">bc n</td>
+<td align="left">移除n号断点</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">t</td>
+<td align="left">单步执行汇编指令</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">F10&#x2F;P</td>
+<td align="left">步过</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">F8&#x2F;t</td>
+<td align="left">步入</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">shift+F11&#x2F;gu</td>
+<td align="left">返回到上层call执行</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">dx -id 0,0,87a95918 -r1 (*((ntdll!_KPRCB *)0x807ca120))</td>
+<td align="left"><code>dx</code>：WinDbg 的高级数据表达式计算器。 <code>-id 0,0,87a95918</code>：指定调试会话和进程&#x2F;线程上下文。 <code>(*((ntdll!_KPRCB *)0x807ca120))</code>：将地址 <code>0x807ca120</code> 强制转换为 <code>_KPRCB</code> 结构并显示。 <code>-r1</code>：递归展开 1 层。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">ep &lt;地址&gt; &lt;值&gt;</td>
+<td align="left">在指定内存地址处写入一个 指针宽度（32位&#x2F;64位） 的数据</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">dp &lt;地址&gt;</td>
+<td align="left">从指定地址开始，以 指针宽度（32位&#x2F;64位） 显示内存内容</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Windbg双机调试配置</li>
+        <li><strong>Author:</strong> zhaojunqi</li>
+        <li><strong>Created at
+                :</strong> 2025-06-22 16:58:39</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-06-22 17:14:29
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/06/22/Windbg双机调试配置/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Windows%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E%E8%B0%83%E8%AF%95%E5%AD%A6%E4%B9%A0/">#Windows内核漏洞调试学习</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/06/22/Windows_kernel_pwn1-OOB/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Windows_kernel_pwn1-OOB</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/12/11/V8-Exploit-Level9/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">V8-Exploit-Level9</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://www.362478.xyz',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">Windbg双机调试配置</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windbg%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE"><span class="nav-text">Windbg调试配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="nav-text">说明：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows11%E5%8F%8C%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%B0%83%E8%AF%95%EF%BC%9A"><span class="nav-text">Windows11双机网络调试：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E4%BA%BA%E8%B8%A9%E5%9D%91%EF%BC%9A"><span class="nav-text">本人踩坑：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E8%A7%A3%E5%86%B3%EF%BC%9A"><span class="nav-text">最终解决：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#windows7%E4%B8%B2%E5%8F%A3%E8%B0%83%E8%AF%95%EF%BC%9A"><span class="nav-text">windows7串口调试：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows7%E9%85%8D%E7%BD%91%EF%BC%9A"><span class="nav-text">windows7配网：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows7%E9%85%8D%E7%BD%AEHEVD%EF%BC%8COSRLoader%EF%BC%8Cghidra"><span class="nav-text">Windows7配置HEVD，OSRLoader，ghidra</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8windbg%E4%B8%AD%E5%8A%A0%E8%BD%BDHEVD-pdb%E7%AC%A6%E5%8F%B7%EF%BC%9A"><span class="nav-text">在windbg中加载HEVD.pdb符号：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windbg%E5%B8%B8%E7%94%A8%E8%B0%83%E8%AF%95%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-text">Windbg常用调试命令：</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">zhaojunqi</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        12 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>

