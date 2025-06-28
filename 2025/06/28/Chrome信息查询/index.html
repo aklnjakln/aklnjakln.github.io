@@ -13,7 +13,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2025/06/22/windbg双机调试配置/"/>
+    <link rel="canonical" href="http://example.com/2025/06/28/chrome信息查询/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -23,16 +23,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windbg双机调试配置">
-<meta property="og:url" content="http://example.com/2025/06/22/Windbg%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="Chrome信息查询">
+<meta property="og:url" content="http://example.com/2025/06/28/Chrome%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-06-22T08:58:39.000Z">
-<meta property="article:modified_time" content="2025-06-22T09:14:29.799Z">
+<meta property="article:published_time" content="2025-06-28T07:52:54.000Z">
+<meta property="article:modified_time" content="2025-06-28T07:57:11.707Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Windows内核漏洞调试学习">
+<meta property="article:tag" content="V8引擎利用学习">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -46,7 +46,7 @@
     
     <title>
         
-            Windbg双机调试配置 | zhaojunqi&#39;s blog
+            Chrome信息查询 | zhaojunqi&#39;s blog
         
     </title>
 
@@ -239,7 +239,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Windbg双机调试配置</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Chrome信息查询</h1>
 			</div>
 			
 		</div>
@@ -260,15 +260,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-06-22 16:58:39</span>
-        <span class="mobile">2025-06-22 16:58:39</span>
+        <span class="desktop">2025-06-28 15:52:54</span>
+        <span class="mobile">2025-06-28 15:52:54</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-06-22 17:14:29</span>
-            <span class="mobile">2025-06-22 17:14:29</span>
+            <span class="desktop">2025-06-28 15:57:11</span>
+            <span class="mobile">2025-06-28 15:57:11</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -280,7 +280,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Windows%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E%E8%B0%83%E8%AF%95%E5%AD%A6%E4%B9%A0/">Windows内核漏洞调试学习</a>&nbsp;
+                        <a href="/tags/V8%E5%BC%95%E6%93%8E%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/">V8引擎利用学习</a>&nbsp;
                     </li>
                 
             </ul>
@@ -306,159 +306,13 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>前言：从这篇文章开始我们将进入windows内核的利用教程，目的是和JS引擎中的漏洞配合起来，组成一条利用链，内核的漏洞可以做到一个提升用户权限的效果，以达到更大程度的利用效果。</p>
-<h1 id="Windbg调试配置"><a href="#Windbg调试配置" class="headerlink" title="Windbg调试配置"></a>Windbg调试配置</h1><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><p>目标机(debuggee machine)： Hype-V中的虚拟机　</p>
-<p>主机(debugger machine):   Windbg所在机器</p>
-<p>由于本次教程涉及到windows7和windows10，所以这两个版本的操作系统在虚拟机中都需要配置</p>
-<h1 id="Windows11双机网络调试："><a href="#Windows11双机网络调试：" class="headerlink" title="Windows11双机网络调试："></a>Windows11双机网络调试：</h1><h2 id="本人踩坑："><a href="#本人踩坑：" class="headerlink" title="本人踩坑："></a>本人踩坑：</h2><p>手动通过bcdedit配置一堆，添加启动项，然后配置dbgsettings，开启debug选项，配置网卡，等等，最终没成功</p>
-<h2 id="最终解决："><a href="#最终解决：" class="headerlink" title="最终解决："></a>最终解决：</h2><p>根据官方教程<a class="link" target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/setting-up-a-network-debugging-connection-automatically%EF%BC%88%E5%B0%86%E4%B8%BB%E6%9C%BA%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%8B%B7%E5%88%B0%E5%AE%BF%E4%B8%BB%E6%9C%BA%E4%B8%8A%E6%97%B6%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%B8%BB%E6%9C%BA%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%E7%9B%AE%E6%A0%87%E6%9C%BA%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%8C%E6%88%96%E8%80%85%E9%80%9A%E8%BF%87%E7%9B%AE%E6%A0%87%E6%9C%BA%E7%9A%84%E5%A2%9E%E5%BC%BA%E4%BC%9A%E8%AF%9D%E5%8A%9F%E8%83%BD%EF%BC%88%E6%88%91%E6%B2%A1%E6%88%90%E5%8A%9F%EF%BC%89%EF%BC%89">https://learn.microsoft.com/zh-cn/windows-hardware/drivers/debugger/setting-up-a-network-debugging-connection-automatically（将主机中的文件拷到宿主机上时可以使用主机通过远程桌面连接目标机的方式，或者通过目标机的增强会话功能（我没成功））<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>利用kenet.exe自动完成配置相应的hostip和port（此处hostip为debugger的ip，port为debugger中监听的端口号），并在windbg中设置后打开windbg.exe，接着重启一下目标机，在Hype-V管理器-&gt;虚拟网络适配器管理中添加一个外部网络适配器，计为kd，将网络适配器的NET模式改为Kd模式，即可进行调试</p>
-<p>目标机中上不了网的问题：在Hype-V管理器中为目标机添加网络适配器，并配置静态ip，即可s</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh interface ip set address &quot;以太网 N&quot; static [IP地址] [子网掩码] [网关]</span><br></pre></td></tr></table></figure></div>
+			<h1 id="chrome查询信息小结："><a href="#chrome查询信息小结：" class="headerlink" title="chrome查询信息小结："></a>chrome查询信息小结：</h1><p>通过访问<a class="link" target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src.git/+/refs/tags/59.0.3071.92">https://chromium.googlesource.com/chromium/src.git/+/refs/tags/59.0.3071.92<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>可以找到chromium某版本对应的commit号(示例为59.0.3071.92)</p>
+<p>通过访问<a class="link" target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src.git/+/refs/tags/59.0.3071.92/DEPS">https://chromium.googlesource.com/chromium/src.git/+/refs/tags/59.0.3071.92/DEPS<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br>然后搜索v8 version可以找到这个chromium对应的v8的版本号和commit号。</p>
+<p>在<a class="link" target="_blank" rel="noopener" href="https://chromium.googlesource.com/v8/v8.git/+/%EF%BC%88v8commit%E5%8F%B7%EF%BC%89">https://chromium.googlesource.com/v8/v8.git/+/（v8commit号）<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> &#x3D;&gt; 可以得到对应v8版本的commit号</p>
+<p>issues.chromium.org是一个这是 Chromium 项目的 官方问题追踪平台,这是在搜索栏的一个检索的标记（代表检索所有chrome中v8模块中的漏洞），粘贴进去，然后可以在最右侧加入CREATED栏（表示第一次发布该漏洞的时间）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">componentid:(1456824 | 1456490 | 1456800 | 1456332 | 1456959 | 1456177 | 1456566 | 1456516 | 1456124 | 1456568 | 1456929 | 1456491 | 1456960 | 1456517 | 1456304 | 1456567) type:vulnerability hotlistid:5432471</span><br></pre></td></tr></table></figure></div>
 
-<p>目的：将名为“以太网 N”的网卡配置为静态ip</p>
-<p>再配置dns：</p>
-<p>netsh interface ip set dns “以太网 N” static 8.8.8.8</p>
-<h1 id="windows7串口调试："><a href="#windows7串口调试：" class="headerlink" title="windows7串口调试："></a>windows7串口调试：</h1><p>非常简单，就只用运行命令</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\system32&gt;bcdedit /copy &#123;current&#125; /d &quot;Kernel Debugging On&quot;</span><br><span class="line">The entry was successfully copied to &#123;3709675a-4632-11ee-b00a-b3e46a698b2a&#125;.</span><br><span class="line"></span><br><span class="line">C:\Windows\system32&gt;bcdedit /debug &#123;3709675a-4632-11ee-b00a-b3e46a698b2a&#125; on</span><br><span class="line">The operation completed successfully.</span><br></pre></td></tr></table></figure></div>
-
-<p>再在虚拟机管理器上hype-V或VM Ware 上对应的com上添加为命名管道，并且起一个名字，再在windbg上通过com连接，填入对应的名字就行。</p>
-<h2 id="windows7配网："><a href="#windows7配网：" class="headerlink" title="windows7配网："></a>windows7配网：</h2><p>配置windows 7的网络时，首先需要在hype-V中给该虚拟机添加一个虚拟网络适配器，并选上NAT模式，（因为在宿主机上打印ipconfig，发现192.168.137.1对应的是Ethernet（NAT）所以我猜是要改成NAT），然后在目标机上对应的网卡配置静态ip和dns即可</p>
-<h2 id="Windows7配置HEVD，OSRLoader，ghidra"><a href="#Windows7配置HEVD，OSRLoader，ghidra" class="headerlink" title="Windows7配置HEVD，OSRLoader，ghidra"></a>Windows7配置HEVD，OSRLoader，ghidra</h2><p>直接在GitHub上下载.zip即可，然后解压下来后就会有HEVD.sys文件，再安装osrloader，并加载这个sys文件即可</p>
-<p>然后在主机上的windbg中加载符号，并验证HEVD符号是否成功加载即可（这里注意路径问题，还需要把整个文件copy到主机对应的路径中）</p>
-<p>.sympath SRV<em>C:\Symbols</em><a class="link" target="_blank" rel="noopener" href="https://msdl.microsoft.com/download/symbols;C:/projects/hevd/build/driver/vulnerable/x64">https://msdl.microsoft.com/download/symbols;C:\projects\hevd\build\driver\vulnerable\x64<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>对于ghidra：下载后需要配置java，再打开.bat文件，即可，再新建项目，加载HEVD.sys即可</p>
-<h2 id="在windbg中加载HEVD-pdb符号："><a href="#在windbg中加载HEVD-pdb符号：" class="headerlink" title="在windbg中加载HEVD.pdb符号："></a>在windbg中加载HEVD.pdb符号：</h2><p>1.首先lm m H*检查模块信息中是否输出HEVD服务</p>
-<p>2.设置路径：</p>
-<p>设置微软服务器符号：.sympath SRV<em>C:\symbols</em><a class="link" target="_blank" rel="noopener" href="https://msdl.microsoft.com/download/symbols">https://msdl.microsoft.com/download/symbols<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>添加额外的路径：.sympath+ C:\projects\hevd\build\driver\vulnerable\x86</p>
-<p>3.加载符号：!sym noisy 启动调试日志   .reload &#x2F;f HEVD.sys 加载符号</p>
-<p>a4.验证符号：<code>x HEVD!*</code>  </p>
-<p><strong>注：</strong>在调试过程过遇到偏移量不对的问题，例如dt _EPROCESS 0x86980d40指令有可能默认选定的符号信息是基于ntdll（ntdll!前缀,用户态dll，适用于windows10&#x2F;11所以应该将该指令改为dt nt! _EPROCESS 0x86980d40（nt!前缀，内核结构体，适用于本系统windows）</p>
-<h2 id="Windbg常用调试命令："><a href="#Windbg常用调试命令：" class="headerlink" title="Windbg常用调试命令："></a>Windbg常用调试命令：</h2><table>
-<thead>
-<tr>
-<th align="left">命令</th>
-<th align="left">功能</th>
-<th align="left">典型应用场景</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>k L5</code></td>
-<td align="left">显示调用栈（限制帧数）</td>
-<td align="left">快速查看崩溃上下文</td>
-</tr>
-<tr>
-<td align="left"><code>u</code></td>
-<td align="left">反汇编代码</td>
-<td align="left">分析崩溃点的汇编指令</td>
-</tr>
-<tr>
-<td align="left"><code>bu</code></td>
-<td align="left">设置延迟绑定断点</td>
-<td align="left">在符号未加载时预先设置断点</td>
-</tr>
-<tr>
-<td align="left"><code>bl</code></td>
-<td align="left">列出所有断点</td>
-<td align="left">检查断点状态或删除无效断点</td>
-</tr>
-<tr>
-<td align="left">r</td>
-<td align="left">查看当前寄存器的值</td>
-<td align="left">查看当前寄存器的值</td>
-</tr>
-<tr>
-<td align="left">.frame 0n0</td>
-<td align="left">切换到调用栈的第 0 帧（即当前执行的函数帧）</td>
-<td align="left">在分析崩溃或断点触发时，定位到最相关的栈帧</td>
-</tr>
-<tr>
-<td align="left">dv &#x2F;t &#x2F;v</td>
-<td align="left">显示当前栈帧中的局部变量（<strong>d</strong>isplay <strong>v</strong>ariables），并附加类型和地址信息</td>
-<td align="left">&#x2F;t 附加类型信息 &#x2F;v 附加地址信息</td>
-</tr>
-<tr>
-<td align="left">locals</td>
-<td align="left">显示局部变量（需符号）</td>
-<td align="left">调试函数内部逻辑</td>
-</tr>
-<tr>
-<td align="left">dd rsp L1</td>
-<td align="left">查看栈顶的4字节值</td>
-<td align="left">分析栈操作或返回地址</td>
-</tr>
-<tr>
-<td align="left">dS</td>
-<td align="left">显示ANSI字符串</td>
-<td align="left">查看字符串参数或缓冲区</td>
-</tr>
-<tr>
-<td align="left"><code>!thread</code></td>
-<td align="left">显示当前线程的详细信息，包括线程对象地址、所属进程、TEB（线程环境块）、栈信息等</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><code>dd fs:[0x124]</code> L1</td>
-<td align="left"><code>dd</code>：以 DWORD 格式显示内存。 <code>fs:[0x124]</code>：从 FS 段寄存器偏移 <code>0x124</code> 处读取内存（x86 内核模式下指向 <code>_KTHREAD</code>）。 <code>L1</code>：仅显示 1 个 DWORD（4 字节）。</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><code>dg @fs</code></td>
-<td align="left">显示 FS 段寄存器的段描述符信息（基址、长度、权限等）。</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">dt_KPCR</td>
-<td align="left">dt（即display type）显示 <code>_KPCR</code>（处理器控制区）的结构定义，包括字段偏移和类型。</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">dt _KTHREAD     0x867095b0</td>
-<td align="left">显示指定地址（<code>0x867095b0</code>）的 <code>_KTHREAD</code> 结构内容。</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">bc n</td>
-<td align="left">移除n号断点</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">t</td>
-<td align="left">单步执行汇编指令</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">F10&#x2F;P</td>
-<td align="left">步过</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">F8&#x2F;t</td>
-<td align="left">步入</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">shift+F11&#x2F;gu</td>
-<td align="left">返回到上层call执行</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">dx -id 0,0,87a95918 -r1 (*((ntdll!_KPRCB *)0x807ca120))</td>
-<td align="left"><code>dx</code>：WinDbg 的高级数据表达式计算器。 <code>-id 0,0,87a95918</code>：指定调试会话和进程&#x2F;线程上下文。 <code>(*((ntdll!_KPRCB *)0x807ca120))</code>：将地址 <code>0x807ca120</code> 强制转换为 <code>_KPRCB</code> 结构并显示。 <code>-r1</code>：递归展开 1 层。</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">ep &lt;地址&gt; &lt;值&gt;</td>
-<td align="left">在指定内存地址处写入一个 指针宽度（32位&#x2F;64位） 的数据</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">dp &lt;地址&gt;</td>
-<td align="left">从指定地址开始，以 指针宽度（32位&#x2F;64位） 显示内存内容</td>
-<td align="left"></td>
-</tr>
-</tbody></table>
+<p>chromium-review.googlesource.com这是 Chromium 项目的 Gerrit 代码评审系统</p>
 
 		</div>
 
@@ -466,18 +320,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Windbg双机调试配置</li>
+        <li><strong>Title:</strong> Chrome信息查询</li>
         <li><strong>Author:</strong> zhaojunqi</li>
         <li><strong>Created at
-                :</strong> 2025-06-22 16:58:39</li>
+                :</strong> 2025-06-28 15:52:54</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-06-22 17:14:29
+                    :</strong> 2025-06-28 15:57:11
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2025/06/22/Windbg双机调试配置/
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/06/28/Chrome信息查询/
         </li>
         <li>
             <strong>
@@ -499,7 +353,7 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/Windows%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E%E8%B0%83%E8%AF%95%E5%AD%A6%E4%B9%A0/">#Windows内核漏洞调试学习</a>&nbsp;
+				<a href="/tags/V8%E5%BC%95%E6%93%8E%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/">#V8引擎利用学习</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -510,23 +364,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/06/22/Windows_kernel_pwn1-OOB/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">Windows_kernel_pwn1-OOB</span>
-						<span class="post-nav-item">Prev posts</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2024/12/11/V8-Exploit-Level9/">
+				<a class="next" rel="next" href="/2025/06/22/Windows_kernel_pwn1-OOB/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">V8-Exploit-Level9</span>
+						<span class="post-nav-title-item">Windows_kernel_pwn1-OOB</span>
 						<span class="post-nav-item">Next posts</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -590,8 +432,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">Windbg双机调试配置</div>
-		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Windbg%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE"><span class="nav-text">Windbg调试配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="nav-text">说明：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows11%E5%8F%8C%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%B0%83%E8%AF%95%EF%BC%9A"><span class="nav-text">Windows11双机网络调试：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E4%BA%BA%E8%B8%A9%E5%9D%91%EF%BC%9A"><span class="nav-text">本人踩坑：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E8%A7%A3%E5%86%B3%EF%BC%9A"><span class="nav-text">最终解决：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#windows7%E4%B8%B2%E5%8F%A3%E8%B0%83%E8%AF%95%EF%BC%9A"><span class="nav-text">windows7串口调试：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows7%E9%85%8D%E7%BD%91%EF%BC%9A"><span class="nav-text">windows7配网：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows7%E9%85%8D%E7%BD%AEHEVD%EF%BC%8COSRLoader%EF%BC%8Cghidra"><span class="nav-text">Windows7配置HEVD，OSRLoader，ghidra</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8windbg%E4%B8%AD%E5%8A%A0%E8%BD%BDHEVD-pdb%E7%AC%A6%E5%8F%B7%EF%BC%9A"><span class="nav-text">在windbg中加载HEVD.pdb符号：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windbg%E5%B8%B8%E7%94%A8%E8%B0%83%E8%AF%95%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-text">Windbg常用调试命令：</span></a></li></ol></li></ol>
+		<div class="page-title">Chrome信息查询</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chrome%E6%9F%A5%E8%AF%A2%E4%BF%A1%E6%81%AF%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="nav-text">chrome查询信息小结：</span></a></li></ol>
 
 	</div>
 </div>
