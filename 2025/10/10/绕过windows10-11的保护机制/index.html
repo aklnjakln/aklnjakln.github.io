@@ -216,7 +216,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -332,7 +332,7 @@
 
 <p>原因是windows10中有SMEP保护机制</p>
 <h2 id="错误尝试——修改CR4寄存器的第20位："><a href="#错误尝试——修改CR4寄存器的第20位：" class="headerlink" title="错误尝试——修改CR4寄存器的第20位："></a>错误尝试——修改CR4寄存器的第20位：</h2><p>为了绕过这个防护机制，首先想到的是修改CR4寄存器的第20位（这个位控制SMEP保护机制是否开启），但是由于不能直接在用户模式内存下执行对应的修改代码，所以需要在内核nt模块中，通过构造ROP链的方式实现该功能，通过调研，发现了一个可以被用来构造ROP的函数：即nt!KeFlushCurrentTbImmediately</p>
-
+<img lazyload src="/images/loading.svg" data-src="/2025/10/10/%E7%BB%95%E8%BF%87windows10-11%E7%9A%84%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6/image-1.png" class title="This is an 1.png">
 
 <p>通过上图中的调试信息可知，指令mov CR4 rcx相对于nt模块的偏移量为3a0db7</p>
 <p>现在，我们需要找到一个 pop rcx; ret 的gadget，将翻转后的 CR4 值放入 RCX。我们可以使用 rp++，这是一个可以搜索搜索目标可执行文件对应的指令的 ROP gadget 。在这里，我们要搜索 ntoskrnl.exe，因为这是 Windows 操作系统的主要内核文件。要做到这一点，你可以使用以下语法</p>
@@ -385,7 +385,7 @@
 <h3 id="新的方式绕过SMEP："><a href="#新的方式绕过SMEP：" class="headerlink" title="新的方式绕过SMEP："></a>新的方式绕过SMEP：</h3><p>在对其他人的做法进行了一番研究后，我们的想法是翻转页表条目 (PTE) 中与我们的用户模式 shellcode 的内存位置相对应的一个位。</p>
 <p>基本上，SMEP 是通过 U&#x2F;S PTE 控制位按内存执行的。让我们看看 WinDbg 中有关用户模式 shellcode 分配的 !pte 输出，以尝试理解页表入口权限。</p>
 <p>注：<br>解决了调试的时候一直闪退的问题：原因是增强会话模式，切换到基本会话模式就好了，然后在用vs执行pwn2_demo.cpp的时候，需要在windbg中把断点下在bu HEVD! TriggerBufferOverflowStack 处，而不是bu HEVD！DriverEntry处</p>
-
+<img lazyload src="/images/loading.svg" data-src="/2025/10/10/%E7%BB%95%E8%BF%87windows10-11%E7%9A%84%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6/image-2.png" class title="This is an 2.png">
 
 <p>​                                                            上图为通过动态调试，修改shellcode所在页的页表的图</p>
 <p>从理论上动态调试完以后，接下来是用构造ROP链的方式来实现修改shellcode所在页的页表权限位的功能</p>
@@ -479,6 +479,18 @@
 
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2025/11/16/CVE-2025-6554%E5%88%86%E6%9E%90/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">CVE-2025-6554分析</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
@@ -591,7 +603,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        14 posts in total
+                        15 posts in total
                     </span>
                     
                 </p>
